@@ -1,5 +1,8 @@
 from django.db import models
 
+from config import NULLABLE
+
+
 # Create your models here.
 
 
@@ -19,7 +22,7 @@ class Course(models.Model):
 
 class Lesson(models.Model):
     title = models.CharField(max_length=128, verbose_name='название')
-    preview = models.ImageField(upload_to='previews/lessons/', verbose_name='превью')
+    preview = models.ImageField(upload_to='previews/lessons/', **NULLABLE, verbose_name='превью')
     description = models.TextField(verbose_name='описание')
     url = models.CharField(max_length=256, verbose_name='ссылка')
     course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='курс')
