@@ -9,7 +9,7 @@ from config import NULLABLE
 class Course(models.Model):
 
     title = models.CharField(max_length=128, verbose_name='название')
-    preview = models.ImageField(upload_to='previews/courses/', verbose_name='превью')
+    preview = models.ImageField(upload_to='previews/courses/', **NULLABLE, verbose_name='превью')
     description = models.TextField(verbose_name='описание')
 
     class Meta:
