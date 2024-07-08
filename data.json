@@ -1,0 +1,106 @@
+[
+  {
+    "model": "lms.course",
+    "pk": 1,
+    "fields": {
+      "title": "Start Python",
+      "preview": "",
+      "description": "Начальный курс"
+    }
+  },
+  {
+    "model": "lms.course",
+    "pk": 2,
+    "fields": {
+      "title": "Advanced Python",
+      "preview": "",
+      "description": "Расширенный курс"
+    }
+  },
+  {
+    "model": "lms.course",
+    "pk": 3,
+    "fields": {
+      "title": "Overview Django",
+      "preview": "",
+      "description": "Обзорный курс"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 1,
+    "fields": {
+      "title": "Intro Django",
+      "preview": "",
+      "description": "Введение в джанго",
+      "url": "django-1",
+      "course": 3
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 2,
+    "fields": {
+      "title": "Django Forms",
+      "preview": "",
+      "description": "Работа с формами",
+      "url": "django-2",
+      "course": 3
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 3,
+    "fields": {
+      "title": "Django Models",
+      "preview": "",
+      "description": "Работа с БД",
+      "url": "django-3",
+      "course": 3
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 4,
+    "fields": {
+      "title": "Python Objects",
+      "preview": "",
+      "description": "Работа с объектами",
+      "url": "python-1",
+      "course": 2
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 5,
+    "fields": {
+      "title": "Python data types",
+      "preview": "",
+      "description": "типы данных",
+      "url": "python-2",
+      "course": 1
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 6,
+    "fields": {
+      "title": "Python Exceptions",
+      "preview": "",
+      "description": "Работа с исключениями",
+      "url": "python-3",
+      "course": 2
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 7,
+    "fields": {
+      "title": "Python Tuple",
+      "preview": "",
+      "description": "Работа с кортежами",
+      "url": "python-4",
+      "course": 1
+    }
+  }
+]

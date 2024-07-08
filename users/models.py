@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 from config import NULLABLE
+from lms.models import Course, Lesson
 
 
 # Create your models here.
@@ -35,3 +36,23 @@ class User(AbstractUser):
 
     def __str__(self):
         return f'{self.email}'
+
+
+class Payment(models.Model):
+    PAY_METHOD_CHOICES = {
+        (1, "cash"),
+        (2, "account"),
+    }
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь')
+    paid_at = models.DateTimeField(auto_now_add=True, verbose_name='дата оплаты')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, **NULLABLE, verbose_name='курс')
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, **NULLABLE, verbose_name='урок')
+    amount = models.PositiveSmallIntegerField(verbose_name='сумма оплаты')
+    method = models.PositiveSmallIntegerField(choices=PAY_METHOD_CHOICES, default=1, verbose_name='способ оплаты')
+
+    class Meta:
+        verbose_name = 'платеж'
+        verbose_name_plural = 'платежи'
+
+    def __str__(self):
+        return f'{self.user.email} - {self.paid_at}: {self.amount}[{self.method}]'

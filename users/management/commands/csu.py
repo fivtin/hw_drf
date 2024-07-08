@@ -15,3 +15,17 @@ class Command(BaseCommand):
         user.is_active = True
         user.is_superuser = True
         user.save()
+
+        user = User.objects.create(email='user@example.com', first_name='user')
+        user.set_password('user1user')
+        user.is_staff = False
+        user.is_active = True
+        user.is_superuser = False
+        user.save()
+
+        user = User.objects.create(email='guest@example.com', first_name='guest')
+        user.set_password('guest1guest')
+        user.is_staff = False
+        user.is_active = True
+        user.is_superuser = False
+        user.save()
