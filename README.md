@@ -3,11 +3,9 @@
 
 1. Установите зависимости
 2. В каталоге __config__ проекта создайте файл ___.env___ (или переименуйте __.env.sample__) и установите необходимые значения переменных.
-3. В этом же файле задайте SUPERUSER_LOGIN, SUPERUSER_PASSWORD
-4. Выполните миграции командой: ___python3 manage.py migrate___
-5. Создайте суперпользователя и двух пользователей запустив команду __python3 manage.py csu__
-6. Загрузите данные в БД командой __python3 manage.py loaddata data.json__
-7. Запустите сервер командой ___python3 manage.py runserver___
+3. Выполните миграции командой: ___python3 manage.py migrate___
+4. Загрузите данные в БД командой __python3 manage.py loaddata data.json__
+5. Запустите сервер командой ___python3 manage.py runserver___
 
 #### Задания ####
 1. Для модели курса с помощью __SerializerMethodField()__ добавлен в сериализатор поле вывода количества уроков.
