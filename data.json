@@ -102,5 +102,140 @@
       "url": "python-4",
       "course": 1
     }
+  },
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$ORwf1Y2EEiLNoIJcrEha5V$a/wzBOWWixhEusONNAPtl6PHZDXjXA1gn05LnNBPZ/s=",
+      "last_login": "2024-07-07T13:26:11.694",
+      "is_superuser": true,
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-07-07T13:25:59.071",
+      "email": "admin@example.com",
+      "first_name": "admin",
+      "last_name": "",
+      "phone": null,
+      "city": null,
+      "image": "",
+      "token": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$3Ir7couMeWEVKqCTctRAug$puATeNpzKSih6vkcSXEN1NwVPY+SfG1isd7Xw+QQxXA=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-07-08T23:39:29.428",
+      "email": "user@example.com",
+      "first_name": "user",
+      "last_name": "",
+      "phone": null,
+      "city": null,
+      "image": "",
+      "token": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$ThzK823l0waMH8OkML0amn$CpfoUmFIR0ET/4/oT5aT0moy7tyGzypqsiJyMyuUCM0=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-07-08T23:43:34.972",
+      "email": "guest@example.com",
+      "first_name": "guest",
+      "last_name": "",
+      "phone": null,
+      "city": null,
+      "image": "",
+      "token": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.payment",
+    "pk": 1,
+    "fields": {
+      "user": 2,
+      "paid_at": "2024-07-08T23:41:28.169",
+      "course": 1,
+      "lesson": null,
+      "amount": 5000,
+      "method": 1
+    }
+  },
+  {
+    "model": "users.payment",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "paid_at": "2024-07-08T23:41:57.177",
+      "course": null,
+      "lesson": 1,
+      "amount": 300,
+      "method": 1
+    }
+  },
+  {
+    "model": "users.payment",
+    "pk": 3,
+    "fields": {
+      "user": 2,
+      "paid_at": "2024-07-08T23:42:25.402",
+      "course": null,
+      "lesson": 3,
+      "amount": 400,
+      "method": 2
+    }
+  },
+  {
+    "model": "users.payment",
+    "pk": 4,
+    "fields": {
+      "user": 3,
+      "paid_at": "2024-07-08T23:45:04.098",
+      "course": 2,
+      "lesson": null,
+      "amount": 10000,
+      "method": 2
+    }
+  },
+  {
+    "model": "users.payment",
+    "pk": 5,
+    "fields": {
+      "user": 3,
+      "paid_at": "2024-07-08T23:45:25.673",
+      "course": null,
+      "lesson": 3,
+      "amount": 400,
+      "method": 2
+    }
+  },
+  {
+    "model": "users.payment",
+    "pk": 6,
+    "fields": {
+      "user": 3,
+      "paid_at": "2024-07-08T23:46:22.545",
+      "course": null,
+      "lesson": 1,
+      "amount": 200,
+      "method": 2
+    }
   }
 ]
