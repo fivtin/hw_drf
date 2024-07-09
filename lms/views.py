@@ -1,5 +1,6 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter
+from rest_framework.permissions import IsAuthenticated
 
 from lms.models import Course, Lesson
 # Create your views here.
@@ -12,6 +13,7 @@ from users.models import Payment
 
 class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
+    permission_classes = [IsAuthenticated]
     queryset = Course.objects.all()
 
 
