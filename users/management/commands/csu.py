@@ -29,3 +29,10 @@ class Command(BaseCommand):
         user.is_active = True
         user.is_superuser = False
         user.save()
+
+        user = User.objects.create(email='moderator@example.com', first_name='moderator')
+        user.set_password('moder1moder')
+        user.is_staff = True
+        user.is_active = True
+        user.is_superuser = False
+        user.save()
