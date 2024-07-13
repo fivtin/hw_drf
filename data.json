@@ -5,7 +5,8 @@
     "fields": {
       "title": "Start Python",
       "preview": "",
-      "description": "Начальный курс"
+      "description": "Начальный курс",
+      "owner": null
     }
   },
   {
@@ -14,7 +15,8 @@
     "fields": {
       "title": "Advanced Python",
       "preview": "",
-      "description": "Расширенный курс"
+      "description": "Расширенный курс",
+      "owner": null
     }
   },
   {
@@ -23,7 +25,8 @@
     "fields": {
       "title": "Overview Django",
       "preview": "",
-      "description": "Обзорный курс"
+      "description": "Обзорный курс",
+      "owner": null
     }
   },
   {
@@ -34,7 +37,8 @@
       "preview": "",
       "description": "Введение в джанго",
       "url": "django-1",
-      "course": 3
+      "course": 3,
+      "owner": null
     }
   },
   {
@@ -45,7 +49,8 @@
       "preview": "",
       "description": "Работа с формами",
       "url": "django-2",
-      "course": 3
+      "course": 3,
+      "owner": null
     }
   },
   {
@@ -56,7 +61,8 @@
       "preview": "",
       "description": "Работа с БД",
       "url": "django-3",
-      "course": 3
+      "course": 3,
+      "owner": null
     }
   },
   {
@@ -67,7 +73,8 @@
       "preview": "",
       "description": "Работа с объектами",
       "url": "python-1",
-      "course": 2
+      "course": 2,
+      "owner": null
     }
   },
   {
@@ -78,7 +85,8 @@
       "preview": "",
       "description": "типы данных",
       "url": "python-2",
-      "course": 1
+      "course": 1,
+      "owner": null
     }
   },
   {
@@ -89,7 +97,8 @@
       "preview": "",
       "description": "Работа с исключениями",
       "url": "python-3",
-      "course": 2
+      "course": 2,
+      "owner": null
     }
   },
   {
@@ -100,7 +109,16 @@
       "preview": "",
       "description": "Работа с кортежами",
       "url": "python-4",
-      "course": 1
+      "course": 1,
+      "owner": null
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+      "name": "moderator",
+      "permissions": []
     }
   },
   {
@@ -108,7 +126,7 @@
     "pk": 1,
     "fields": {
       "password": "pbkdf2_sha256$600000$ORwf1Y2EEiLNoIJcrEha5V$a/wzBOWWixhEusONNAPtl6PHZDXjXA1gn05LnNBPZ/s=",
-      "last_login": "2024-07-07T13:26:11.694",
+      "last_login": "2024-07-13T15:22:16.423",
       "is_superuser": true,
       "is_staff": true,
       "is_active": true,
@@ -163,6 +181,29 @@
       "image": "",
       "token": null,
       "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$DVGKiX2bPnNmlbRDZbFodU$NijPZXke+K5lDqOg20SVefD8So+XwKy9+9On21bley8=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-07-14T00:42:11",
+      "email": "moderator@example.com",
+      "first_name": "moderator",
+      "last_name": null,
+      "phone": null,
+      "city": null,
+      "image": "",
+      "token": null,
+      "groups": [
+        1
+      ],
       "user_permissions": []
     }
   },
