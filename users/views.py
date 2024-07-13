@@ -9,14 +9,15 @@ from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, UpdateAPIView, RetrieveAPIView, DestroyAPIView
 from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 
 from config.settings import EMAIL_HOST_USER
 from users.forms import UserRegisterForm
 from users.models import User
-from users.serializers import JWTTokenObtainPairSerializer, UserSerializer
+from users.permissions import IsOwner
+from users.serializers import JWTTokenObtainPairSerializer, UserSerializer, UserUpdateSerializer, UserRetrieveSerializer
 
 
 # Create your views here.
@@ -121,3 +122,20 @@ class UserCreateAPIView(CreateAPIView):
         user = serializer.save(is_active=True)
         user.set_password(user.password)
         user.save()
+
+
+class UserUpdateAPIView(UpdateAPIView):
+    serializer_class = UserUpdateSerializer
+    queryset = User.objects.all()
+    permission_classes = [IsOwner]
+
+
+class UserRetrieveAPIView(RetrieveAPIView):
+    serializer_class = UserRetrieveSerializer
+    queryset = User.objects.all()
+    permission_classes = [IsAuthenticated]
+
+
+class UserDestroyAPIView(DestroyAPIView):
+    queryset = User.objects.all()
+    permission_classes = [IsAdminUser]
