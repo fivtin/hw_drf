@@ -1,6 +1,7 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.response import Response
 
 from lms.models import Course, Lesson
 from lms.permissions import IsModerator, IsOwner, IsNotModerator
@@ -34,6 +35,12 @@ class CourseViewSet(viewsets.ModelViewSet):
             permission_classes = [IsAdminUser]
         return [permission() for permission in permission_classes]
 
+    def get_queryset(self):
+        if IsModerator().has_permission(self.request, self):
+            return Course.objects.all()
+        else:
+            return Course.objects.filter(owner=self.request.user)
+
     def perform_create(self, serializer):
         course = serializer.save()
         course.owner = self.request.user
@@ -55,6 +62,12 @@ class LessonCreateAPIView(LessonSerializerClassMixin, generics.CreateAPIView):
 
 class LessonListAPIView(LessonSerializerClassMixin, generics.ListAPIView):
     queryset = Lesson.objects.all()
+
+    def get_queryset(self):
+        if IsModerator().has_permission(self.request, self):
+            return Lesson.objects.all()
+        else:
+            return Lesson.objects.filter(owner=self.request.user)
 
 
 class LessonRetrieveAPIView(LessonSerializerClassMixin, generics.RetrieveAPIView):
