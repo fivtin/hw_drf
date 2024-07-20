@@ -1,8 +1,11 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter
+from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from lms.models import Course, Lesson
+from lms.models import Course, Lesson, CourseSubscriber
 from lms.permissions import IsModerator, IsOwner, IsNotModerator
 # Create your views here.
 from lms.serializers import CourseSerializer, LessonSerializer, PaymentSerializer
@@ -91,3 +94,22 @@ class PaymentListAPIView(generics.ListAPIView):
     ordering_fields = ['paid_at']
     filterset_fields = ('course', 'lesson', 'method', )
     permission_classes = [IsAuthenticated]
+
+
+class CourseSubscriberAPIView(APIView):
+
+    def post(self, request, *args, **kwargs):
+        user = self.request.user
+        course_id = self.request.data.get("course")
+        course_item = get_object_or_404(Course, pk=course_id)
+
+        subs_item = CourseSubscriber.objects.filter(user=user, course=course_item)
+
+        if subs_item.exists():
+            subs_item.delete()
+            message = f'Подписка на курс {course_item.title} удалена.'
+        else:
+            CourseSubscriber.objects.create(user=user, course=course_item)
+            message = f'Подписка на курс {course_item.title} добавлена.'
+
+        return Response({"message": message})
