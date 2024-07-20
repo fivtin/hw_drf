@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from lms.models import Course, Lesson, CourseSubscriber
+from lms.paginators import CoursePagination, LessonPagination, PaymentPagination
 from lms.permissions import IsModerator, IsOwner, IsNotModerator
 # Create your views here.
 from lms.serializers import CourseSerializer, LessonSerializer, PaymentSerializer
@@ -19,6 +20,7 @@ class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
     permission_classes = [IsAuthenticated]
     queryset = Course.objects.all()
+    pagination_class = CoursePagination
 
     def get_permissions(self):
         if self.action == 'list':
@@ -64,6 +66,7 @@ class LessonCreateAPIView(LessonSerializerClassMixin, generics.CreateAPIView):
 
 class LessonListAPIView(LessonSerializerClassMixin, generics.ListAPIView):
     queryset = Lesson.objects.all()
+    pagination_class = LessonPagination
 
     def get_queryset(self):
         if IsModerator().has_permission(self.request, self):
@@ -94,6 +97,7 @@ class PaymentListAPIView(generics.ListAPIView):
     ordering_fields = ['paid_at']
     filterset_fields = ('course', 'lesson', 'method', )
     permission_classes = [IsAuthenticated]
+    pagination_class = PaymentPagination
 
 
 class CourseSubscriberAPIView(APIView):
