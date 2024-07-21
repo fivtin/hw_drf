@@ -15,23 +15,6 @@
     <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
         <nav class="uk-navbar-container">
             <div class="uk-container" uk-navbar>
-<!--                <div class="uk-navbar-left">-->
-<!--                    <ul class="uk-navbar-nav">-->
-<!--                        {% if user.is_authenticated %}-->
-<!--                        <li><a href="{% url 'mailer:client_list' %}">Клиенты</a></li>-->
-<!--                        <li><a href="{% url 'mailer:message_list' %}">Сообщения</a></li>-->
-<!--                        <li><a href="{% url 'mailer:newsletter_list' %}">Рассылки</a></li>-->
-<!--                        {% if not perms.mailer.access_manager %}-->
-<!--                        <li><a href="{% url 'mailer:newsletter_statistic' %}">Статистика</a></li>-->
-<!--                        {% endif %}-->
-<!--                        {% if perms.users.view_list %}-->
-<!--                        <li><a href="{% url 'users:list' %}">Пользователи</a></li>-->
-<!--                        {% endif %}-->
-<!--                        {% endif %}-->
-<!--                        <li><a href="{-% url 'blog:list' %-}">Блоги</a></li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-
                 <div class="uk-navbar-right">
                     <ul class="uk-navbar-nav">
                         {% if user.is_authenticated %}
