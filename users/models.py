@@ -49,6 +49,8 @@ class Payment(models.Model):
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, **NULLABLE, verbose_name='урок')
     amount = models.PositiveSmallIntegerField(verbose_name='сумма оплаты')
     method = models.PositiveSmallIntegerField(choices=PAY_METHOD_CHOICES, default=1, verbose_name='способ оплаты')
+    session_id = models.CharField(max_length=255, **NULLABLE, verbose_name='ID сессии')
+    link = models.URLField(max_length=400, **NULLABLE, verbose_name='ссылка на оплату')
 
     class Meta:
         verbose_name = 'платеж'
