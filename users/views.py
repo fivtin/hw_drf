@@ -15,9 +15,11 @@ from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 
 from config.settings import EMAIL_HOST_USER
 from users.forms import UserRegisterForm
-from users.models import User
+from users.models import User, Payment
 from users.permissions import IsOwner
-from users.serializers import JWTTokenObtainPairSerializer, UserSerializer, UserUpdateSerializer, UserRetrieveSerializer
+from users.serializers import JWTTokenObtainPairSerializer, UserSerializer, UserUpdateSerializer, \
+    UserRetrieveSerializer, CreateCoursePaymentSerializer
+from users.services import create_stripe_payment_url
 
 
 # Create your views here.
@@ -139,3 +141,16 @@ class UserRetrieveAPIView(RetrieveAPIView):
 class UserDestroyAPIView(DestroyAPIView):
     queryset = User.objects.all()
     permission_classes = [IsAdminUser]
+
+
+class CoursePaymentCreateAPIView(CreateAPIView):
+    queryset = Payment.objects.all()
+    serializer_class = CreateCoursePaymentSerializer
+
+    def perform_create(self, serializer):
+        payment = serializer.save(user=self.request.user)
+        payment.method = 2
+        payment_session = create_stripe_payment_url(f'Course: {payment.course.title}', payment.amount)
+        payment.session_id = payment_session[0]
+        payment.link = payment_session[1]
+        payment.save()

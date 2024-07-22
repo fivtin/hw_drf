@@ -5,7 +5,7 @@ from rest_framework_simplejwt.views import TokenRefreshView
 from users.apps import UsersConfig
 from users.views import UserCreateView, email_confirm, reset_password, reset_password_success, UserListView, \
     user_deactivate, user_activate, JWTTokenObtainPairView, UserCreateAPIView, UserUpdateAPIView, UserRetrieveAPIView, \
-    UserDestroyAPIView
+    UserDestroyAPIView, CoursePaymentCreateAPIView
 
 app_name = UsersConfig.name
 
@@ -26,4 +26,5 @@ urlpatterns = [
     path('<int:pk>/', UserRetrieveAPIView.as_view(), name='api_detail'),
     path('<int:pk>/update/', UserUpdateAPIView.as_view(), name='api_update'),
     path('<int:pk>/delete/', UserDestroyAPIView.as_view(), name='api_delete'),
+    path('courses/payment/', CoursePaymentCreateAPIView.as_view(), name='course_payment'),
 ]
