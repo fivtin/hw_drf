@@ -56,6 +56,8 @@ class LessonSerializerClassMixin:
 
 
 class LessonCreateAPIView(LessonSerializerClassMixin, generics.CreateAPIView):
+    """Create lesson."""
+
     permission_classes = [IsAuthenticated, IsNotModerator]
 
     def perform_create(self, serializer):
@@ -65,6 +67,8 @@ class LessonCreateAPIView(LessonSerializerClassMixin, generics.CreateAPIView):
 
 
 class LessonListAPIView(LessonSerializerClassMixin, generics.ListAPIView):
+    """Get a list of lessons."""
+
     queryset = Lesson.objects.all()
     pagination_class = LessonPagination
 
@@ -76,21 +80,29 @@ class LessonListAPIView(LessonSerializerClassMixin, generics.ListAPIView):
 
 
 class LessonRetrieveAPIView(LessonSerializerClassMixin, generics.RetrieveAPIView):
+    """Get detailed information about the lesson."""
+
     queryset = Lesson.objects.all()
     permission_classes = [IsOwner | IsModerator]
 
 
 class LessonUpdateAPIView(LessonSerializerClassMixin, generics.UpdateAPIView):
+    """Update lesson."""
+
     queryset = Lesson.objects.all()
     permission_classes = [IsOwner | IsModerator]
 
 
 class LessonDestroyAPIView(generics.DestroyAPIView):
+    """Delete lesson."""
+
     queryset = Lesson.objects.all()
     permission_classes = [IsOwner, IsNotModerator]
 
 
 class PaymentListAPIView(generics.ListAPIView):
+    """Get a list of payments."""
+
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
@@ -101,6 +113,7 @@ class PaymentListAPIView(generics.ListAPIView):
 
 
 class CourseSubscriberAPIView(APIView):
+    """Subscribe to the course. / Unsubscribe from the course."""
 
     def post(self, request, *args, **kwargs):
         user = self.request.user

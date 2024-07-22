@@ -116,6 +116,8 @@ class JWTTokenObtainPairView(TokenObtainPairView):
 
 
 class UserCreateAPIView(CreateAPIView):
+    """Create user."""
+
     serializer_class = UserSerializer
     queryset = User.objects.all()
     permission_classes = [AllowAny]
@@ -127,23 +129,31 @@ class UserCreateAPIView(CreateAPIView):
 
 
 class UserUpdateAPIView(UpdateAPIView):
+    """Update user."""
+
     serializer_class = UserUpdateSerializer
     queryset = User.objects.all()
     permission_classes = [IsOwner]
 
 
 class UserRetrieveAPIView(RetrieveAPIView):
+    """Detailed information about the user."""
+
     serializer_class = UserRetrieveSerializer
     queryset = User.objects.all()
     permission_classes = [IsAuthenticated]
 
 
 class UserDestroyAPIView(DestroyAPIView):
+    """Delete user."""
+
     queryset = User.objects.all()
     permission_classes = [IsAdminUser]
 
 
 class CoursePaymentCreateAPIView(CreateAPIView):
+    """Create payment for course."""
+
     queryset = Payment.objects.all()
     serializer_class = CreateCoursePaymentSerializer
 
