@@ -69,7 +69,7 @@ class LessonCreateAPIView(LessonSerializerClassMixin, generics.CreateAPIView):
         lesson.save()
 
 
-class LessonListAPIView(generics.ListAPIView):
+class LessonListAPIView(LessonSerializerClassMixin, generics.ListAPIView):
     """Get a list of lessons."""
 
     queryset = Lesson.objects.all()
