@@ -1,4 +1,5 @@
 from django_filters.rest_framework import DjangoFilterBackend
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.filters import OrderingFilter
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
@@ -17,6 +18,8 @@ from users.models import Payment
 
 
 class CourseViewSet(viewsets.ModelViewSet):
+    """Implementation of CRUD API for courses."""
+
     serializer_class = CourseSerializer
     permission_classes = [IsAuthenticated]
     queryset = Course.objects.all()
@@ -66,7 +69,7 @@ class LessonCreateAPIView(LessonSerializerClassMixin, generics.CreateAPIView):
         lesson.save()
 
 
-class LessonListAPIView(LessonSerializerClassMixin, generics.ListAPIView):
+class LessonListAPIView(generics.ListAPIView):
     """Get a list of lessons."""
 
     queryset = Lesson.objects.all()
@@ -115,6 +118,7 @@ class PaymentListAPIView(generics.ListAPIView):
 class CourseSubscriberAPIView(APIView):
     """Subscribe to the course. / Unsubscribe from the course."""
 
+    @swagger_auto_schema(operation_description='Send the "course" parameter with the ID value in the request body.')
     def post(self, request, *args, **kwargs):
         user = self.request.user
         course_id = self.request.data.get("course")
