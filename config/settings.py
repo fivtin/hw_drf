@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'corsheaders',
 
+    'django_celery_beat',
+
     'lms',
     'users',
 ]
@@ -207,3 +209,17 @@ CORS_ALLOW_ALL_ORIGINS = False
 # ]
 
 STRIPE_API_KEY = os.getenv('STRIPE_API_KEY')
+
+
+CELERY_BROKER_URL = os.getenv('REDIS_LOCATION')
+
+CELERY_RESULT_BACKEND = os.getenv('REDIS_LOCATION')
+
+CELERY_TASK_TRACK_STARTED = True
+
+CELERY_BEAT_SCHEDULE = {
+    'task-name': {
+        'task': 'lms.tasks.my_task',  # Путь к задаче
+        'schedule': timedelta(minutes=100),  # Расписание выполнения задачи (например, каждые 10 минут)
+    },
+}
