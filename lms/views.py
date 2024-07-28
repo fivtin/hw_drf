@@ -13,6 +13,7 @@ from lms.permissions import IsModerator, IsOwner, IsNotModerator
 from lms.serializers import CourseSerializer, LessonSerializer, PaymentSerializer
 from rest_framework import viewsets
 from rest_framework import generics
+from lms.tasks import send_email_for_course_update
 
 from users.models import Payment
 
@@ -51,6 +52,11 @@ class CourseViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         course = serializer.save()
         course.owner = self.request.user
+        course.save()
+
+    def perform_update(self, serializer):
+        course = serializer.save()
+        send_email_for_course_update.delay(course.pk)
         course.save()
 
 
