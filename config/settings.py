@@ -219,7 +219,7 @@ CELERY_TASK_TRACK_STARTED = True
 
 CELERY_BEAT_SCHEDULE = {
     'task-name': {
-        'task': 'lms.tasks.my_task',  # Путь к задаче
-        'schedule': timedelta(minutes=100),  # Расписание выполнения задачи (например, каждые 10 минут)
+        'task': 'lms.tasks.block_inactive_users',
+        'schedule': timedelta(minutes=1),
     },
 }
