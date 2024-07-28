@@ -217,6 +217,8 @@ CELERY_RESULT_BACKEND = os.getenv('REDIS_LOCATION')
 
 CELERY_TASK_TRACK_STARTED = True
 
+CELERY_TIMEZONE = TIME_ZONE
+
 CELERY_BEAT_SCHEDULE = {
     'task-name': {
         'task': 'lms.tasks.block_inactive_users',
